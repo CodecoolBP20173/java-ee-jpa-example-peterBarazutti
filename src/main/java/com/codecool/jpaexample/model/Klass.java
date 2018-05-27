@@ -4,9 +4,20 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "Class")
 public class Klass {
+    @Id
     private String name;
+    @OneToMany(mappedBy = "student_class")
     private Set<Student> students = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private CCLocation location;
+
+    public Klass(String name, CCLocation location) {
+        this.name = name;
+        this.location = location;
+    }
 
     public Klass() {}
 
